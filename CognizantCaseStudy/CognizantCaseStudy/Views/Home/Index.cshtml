@@ -2,7 +2,39 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<CodeChallenge>
+
+@using (Html.BeginForm("Submit", "Task", FormMethod.Post))
+{
+    <div class="mb-3 row">
+        <label for="Person" class="col-sm-1 col-form-label">Name</label>
+        <div class="col-sm-2">
+            @Html.TextBox("Person", "", new { @class="form-control" })
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="CodeTask" class="col-sm-1 col-form-label">Select Task</label>
+        <div class="col-sm-2">
+            @Html.DropDownList("CodeTask", Model.Select(item => new SelectListItem(item.Name,item.Description)),
+        new { onchange = "callChangefunc(this.value)", @class = "form-select" })
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="CodeTaskDescription" class="col-sm-1 col-form-label">Description</label>
+        <div class="col-sm-2">
+            <p class="form-control-plaintext" id="CodeTaskDescription" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="Code" class="col-sm-1 col-form-label">Solution Code</label>
+        <div class="col-sm-3">
+            @Html.TextArea("Code", new { @class="form-control", rows="8" })
+        </div>
+    </div>
+    <div class="mb-5 row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}
