@@ -1,4 +1,5 @@
-﻿using CognizantCaseStudy.Models;
+﻿using CognizantCaseStudy.DB.Services;
+using CognizantCaseStudy.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,18 @@ namespace CognizantCaseStudy.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ICodeChallengeRepository _codeChallengeRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICodeChallengeRepository codeChallengeRepository)
         {
-            _logger = logger;
+            _codeChallengeRepository = codeChallengeRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var challengeList = await _codeChallengeRepository.All();
+            challengeList.Insert(0, new CodeChallenge());
+            return View(challengeList);
         }
 
         public IActionResult Privacy()
