@@ -1,0 +1,29 @@
+﻿@using CognizantCaseStudy.ViewModels
+
+@{
+    ViewData["Title"] = "Leaderboard Page";
+}
+
+@model List<SubmittedChallengeResultsViewModel>
+
+<div class="col-sm-5">
+<table class="table table-success">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Successful Solutions</th>
+      <th scope="col">Tasks</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var submittedChallengeResult in Model)
+    {
+    <tr>
+      <td>@submittedChallengeResult.PlayerName</td>
+      <td>@submittedChallengeResult.SuccessfulSubmissions</td>
+      <td>@submittedChallengeResult.SolvedTasksNames</td>
+    </tr>
+    }
+  </tbody>
+</table>
+</div>

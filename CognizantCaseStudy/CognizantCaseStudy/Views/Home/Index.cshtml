@@ -38,3 +38,18 @@
         </div>
     </div>
 }
+
+<script type="text/javascript">
+        function callChangefunc(val){
+            val = '\xa0' + val;
+            var element = document.getElementById("CodeTaskDescription");
+            element.innerHTML = val;
+            element = document.getElementById("Code");
+            element.value = "using System\;\n" +
+                                 "class Program \n" +
+                                 '\{' +
+                                     "\n \xa0 \xa0 static void Main(string[] args)\n" + '\xa0\xa0\xa0\xa0\{\n\n' +
+                                     '\xa0\xa0\xa0\xa0\}\n' +
+                                 '\}';
+        }
+</script>

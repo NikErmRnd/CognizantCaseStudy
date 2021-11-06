@@ -12,6 +12,8 @@ var clientSecret = "ba42531f32e9ce9e66941145d96138d1b71f6a8bc937f5d0972090c31d9b
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<ICodeChallengeRepository, CodeChallengeRepository>();
 builder.Services.AddTransient<ICodeChallengeSubmitterService>(s => new CodeChallengeSubmitterService(clientId, clientSecret));
+builder.Services.AddTransient<ISubmittedChallengeResultRepository, SubmittedChallengeResultRepository>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
